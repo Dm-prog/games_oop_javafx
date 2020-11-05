@@ -24,7 +24,7 @@ public class BishopBlack implements Figure {
         }
         int size = 8;
         Cell[] steps = new Cell[size];
-        int deltaX = -1;
+        int deltaX = 1;
         int deltaY = 1;
         for (int index = 0; index < size; index++) {
             int x = index + deltaX;
