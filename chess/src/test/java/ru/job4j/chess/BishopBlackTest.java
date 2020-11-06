@@ -23,11 +23,6 @@ public class BishopBlackTest {
     }
 
     @Test
-    public void isDiagonal() {
-
-    }
-
-    @Test
     public void copy() {
         Cell dest = Cell.A3;
         BishopBlack bishopBlack = new BishopBlack(dest);
