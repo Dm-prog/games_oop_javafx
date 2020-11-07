@@ -52,6 +52,17 @@ public class Logic {
         return rst;
     }
 
+    private boolean free(Cell[] steps) throws OccupiedCellException {
+        for (Figure figure : figures) {
+            for (Cell cell : steps) {
+                if (figure.position().x == cell.x || figure.position().y == cell.y) {
+                    throw new OccupiedCellException("ячейка занята");
+                }
+            }
+        }
+        return true;
+    }
+
     @Override
     public String toString() {
         return "Logic{" +

@@ -29,7 +29,7 @@ public class BishopBlack implements Figure {
         int deltaY = 1;
         int x = source.x;
         int y = source.y;
-        int size = (x + y) * 2;
+        int size = Math.abs(source.x - dest.x);
         Cell[] steps = new Cell[size];
         for (int index = 0; index < size; index++) {
             x += deltaX;
