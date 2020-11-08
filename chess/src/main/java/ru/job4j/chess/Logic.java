@@ -52,10 +52,10 @@ public class Logic {
         return rst;
     }
 
-    private boolean free(Cell[] steps) throws OccupiedCellException {
+    private boolean isFree(Cell[] steps) throws OccupiedCellException {
         for (Figure figure : figures) {
             for (Cell cell : steps) {
-                if (figure.position().x == cell.x || figure.position().y == cell.y) {
+                if (figure.position().equals(cell)) {
                     throw new OccupiedCellException("ячейка занята");
                 }
             }

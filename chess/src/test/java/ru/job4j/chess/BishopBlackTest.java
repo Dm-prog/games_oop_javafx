@@ -26,6 +26,6 @@ public class BishopBlackTest {
     public void copy() {
         Cell dest = Cell.A3;
         BishopBlack bishopBlack = new BishopBlack(dest);
-        assertThat(bishopBlack.copy(dest), is(bishopBlack));
+        assertNotEquals(bishopBlack.copy(dest), is(bishopBlack));
     }
 }

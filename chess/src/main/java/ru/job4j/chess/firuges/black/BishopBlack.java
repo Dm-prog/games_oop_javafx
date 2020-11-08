@@ -25,8 +25,8 @@ public class BishopBlack implements Figure {
             );
         }
 
-        int deltaX = 1;
-        int deltaY = 1;
+        int deltaX = Math.abs(position().x);
+        int deltaY = Math.abs(position().y);
         int x = source.x;
         int y = source.y;
         int size = Math.abs(source.x - dest.x);
