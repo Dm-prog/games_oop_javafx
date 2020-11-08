@@ -16,16 +16,18 @@ import java.util.Optional;
 public class Logic {
     private final Figure[] figures = new Figure[32];
     private int index = 0;
+    Logic logic = new Logic();
 
     public void add(Figure figure) {
         this.figures[this.index++] = figure;
     }
 
-    public boolean move(Cell source, Cell dest) {
+    public boolean move(Cell source, Cell dest) throws OccupiedCellException {
         boolean rst = false;
         int index = this.findBy(source);
         if (index != -1) {
             Cell[] steps = this.figures[index].way(source, dest);
+            logic.isFree(steps);
             if (steps.length > 0 && steps[steps.length - 1].equals(dest)) {
                 rst = true;
                 this.figures[index] = this.figures[index].copy(dest);
