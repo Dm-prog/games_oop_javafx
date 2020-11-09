@@ -25,20 +25,8 @@ public class BishopBlack implements Figure {
             );
         }
 
-        int deltaX = 0;
-        int deltaY = 0;
-        if ((dest.x - source.x) > 0) {
-            deltaX = 1;
-        }
-        if ((dest.x - source.x) < 0) {
-            deltaX = -1;
-        }
-        if ((dest.y - source.y) > 0) {
-            deltaY = 1;
-        }
-        if ((dest.y - source.y) < 0) {
-            deltaY = -1;
-        }
+        int deltaX = ((dest.x - source.x) > 0) ? 1 : -1;
+        int deltaY = ((dest.y - source.y) > 0) ? 1 : -1;
 
         int x = source.x;
         int y = source.y;
