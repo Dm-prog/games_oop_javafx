@@ -1,38 +1,48 @@
 package ru.job4j.chess;
 
-import org.junit.Ignore;
+import org.junit.Before;
 import org.junit.Test;
 import ru.job4j.chess.firuges.Cell;
-import ru.job4j.chess.firuges.Figure;
 import ru.job4j.chess.firuges.black.BishopBlack;
 
-import static org.hamcrest.CoreMatchers.both;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.*;
 
 public class LogicTest {
+    private Logic logic;
 
-    //@Ignore
+    @Before
+    public void initialization() {
+        logic = new Logic();
+    }
+
     @Test
-    public void move()
+    public void whenTheFigureFollowsTheRules()
             throws FigureNotFoundException, OccupiedCellException, ImpossibleMoveException {
-        Logic logic = new Logic();
         logic.add(new BishopBlack(Cell.C1));
         boolean rsl = logic.move(Cell.C1, Cell.H6);
         assertThat(true, is(rsl));
     }
 
     @Test
-    public void add() {
-        Figure figure = new BishopBlack(Cell.A1);
-        Figure[] figures = new Figure[32];
-        int index = 0;
-        figures[index++] = figure;
-        assertThat(figures[0], is(figure));
+    public void whenTheFigureDoesNotMoveDiagonally() throws ImpossibleMoveException {
+        logic.add(new BishopBlack(Cell.C1));
+        boolean rsl = logic.move(Cell.C1, Cell.D3);
+        assertNotEquals(null, rsl, new ImpossibleMoveException("пользователь двигает фигуру не по правилам шахмат."));
     }
 
     @Test
-    public void clean() {
+    public void whenAnotherShapeIsOnTheWay() throws ImpossibleMoveException {
+        logic.add(new BishopBlack(Cell.C1));
+        boolean rslMove = logic.move(Cell.C1, Cell.D3);
+        boolean rslIsFree = logic.isFree(new Cell[]{Cell.C1, Cell.D3});
+        assertEquals(rslMove, is(rslIsFree));
+    }
 
+    @Test
+    public void whenTheFigureMovesFromTheWrongPlace() throws ImpossibleMoveException {
+        logic.add(new BishopBlack(Cell.C1));
+        boolean rsl = logic.move(Cell.C2, Cell.D3);
+        assertNotEquals(null, rsl, new ImpossibleMoveException("пользователь двигает фигуру не по правилам шахмат."));
     }
 }

@@ -68,7 +68,7 @@ public class Chess extends Application {
                             rect.setX(((int) momento.getX() / 40) * 40 + 5);
                             rect.setY(((int) momento.getY() / 40) * 40 + 5);
                         }
-                    } catch (OccupiedCellException e) {
+                    } catch (ImpossibleMoveException e) {
                         e.printStackTrace();
                     }
                 }

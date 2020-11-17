@@ -21,7 +21,7 @@ public class Logic {
         this.figures[this.index++] = figure;
     }
 
-    public boolean move(Cell source, Cell dest) throws OccupiedCellException {
+    public boolean move(Cell source, Cell dest) throws ImpossibleMoveException {
         boolean rst = false;
         int index = this.findBy(source);
         if (index != -1) {
@@ -53,11 +53,11 @@ public class Logic {
         return rst;
     }
 
-    private boolean isFree(Cell[] steps) throws OccupiedCellException {
+    public boolean isFree(Cell[] steps) throws ImpossibleMoveException {
         for (Figure figure : figures) {
             for (Cell cell : steps) {
                 if (figure.position().equals(cell)) {
-                    throw new OccupiedCellException("ячейка занята");
+                    throw new ImpossibleMoveException("пользователь двигает фигуру не по правилам шахмат.");
                 }
             }
         }
