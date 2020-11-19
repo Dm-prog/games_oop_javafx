@@ -55,9 +55,11 @@ public class Logic {
 
     public boolean isFree(Cell[] steps) throws ImpossibleMoveException {
         for (Figure figure : figures) {
-            for (Cell cell : steps) {
-                if (figure.position().equals(cell)) {
-                    throw new ImpossibleMoveException("пользователь двигает фигуру не по правилам шахмат.");
+            if (figure != null) {
+                for (Cell cell : steps) {
+                    if (figure.position().equals(cell)) {
+                        throw new ImpossibleMoveException("пользователь двигает фигуру не по правилам шахмат.");
+                    }
                 }
             }
         }

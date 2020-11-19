@@ -18,25 +18,25 @@ public class LogicTest {
 
     @Test
     public void whenTheFigureFollowsTheRules()
-            throws FigureNotFoundException, OccupiedCellException, ImpossibleMoveException {
+            throws ImpossibleMoveException {
         logic.add(new BishopBlack(Cell.C1));
         boolean rsl = logic.move(Cell.C1, Cell.H6);
         assertThat(true, is(rsl));
     }
 
     @Test
-    public void whenTheFigureDoesNotMoveDiagonally() throws ImpossibleMoveException {
+    public void whenTheFigureDoesNotMoveDiagonally() {
         logic.add(new BishopBlack(Cell.C1));
-        boolean rsl = logic.move(Cell.C1, Cell.D3);
-        assertNotEquals(null, rsl, new ImpossibleMoveException("пользователь двигает фигуру не по правилам шахмат."));
+        boolean rsl = new BishopBlack(Cell.C1).isDiagonal(Cell.C1, Cell.D3);
+        assertNotEquals(null, rsl, new IllegalStateException());
     }
 
     @Test
     public void whenAnotherShapeIsOnTheWay() throws ImpossibleMoveException {
         logic.add(new BishopBlack(Cell.C1));
-        boolean rslMove = logic.move(Cell.C1, Cell.D3);
-        boolean rslIsFree = logic.isFree(new Cell[]{Cell.C1, Cell.D3});
-        assertEquals(rslMove, is(rslIsFree));
+        boolean rslMove = logic.move(Cell.C1, Cell.F4);
+        boolean rslIsFree = logic.isFree(new Cell[]{Cell.C1, Cell.E3});
+        assertEquals(rslMove, rslIsFree);
     }
 
     @Test
