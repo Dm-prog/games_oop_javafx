@@ -4,6 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 import ru.job4j.chess.firuges.Cell;
 import ru.job4j.chess.firuges.black.BishopBlack;
+import ru.job4j.chess.firuges.white.BishopWhite;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.*;
@@ -34,9 +35,9 @@ public class LogicTest {
     @Test
     public void whenAnotherShapeIsOnTheWay() throws ImpossibleMoveException {
         logic.add(new BishopBlack(Cell.C1));
-        boolean rslMove = logic.move(Cell.C1, Cell.F4);
-        boolean rslIsFree = logic.isFree(new Cell[]{Cell.C1, Cell.E3});
-        assertEquals(rslMove, rslIsFree);
+        logic.add(new BishopWhite(Cell.E3));
+        boolean rsl = logic.move(Cell.C1, Cell.F4);
+        assertThat(rsl, is(new ImpossibleMoveException("пользователь двигает фигуру не по правилам шахмат.")));
     }
 
     @Test
